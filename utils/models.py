@@ -45,7 +45,7 @@ class Perceptron:
             
             #Updating weights
             self.weights = self.weights + self.eta * np.dot(X_with_bias.T, self.error)
-            print(f'Updated weights after {epoch}/{self.epochs} is {self.weights}')
+            print(f'Updated weights after {epoch + 1}/{self.epochs} is {self.weights}')
             print(f'##' * 20)
     
     #The predict method, to predict an unseen data
@@ -57,7 +57,7 @@ class Perceptron:
     #We will love to compute the total loss
     def total_loss(self):
         loss = np.sum(self.error)
-        print(f'The total loss {loss}')
+        #print(f'The total loss {loss}')
         #Optional, you can return the loss, if need be
         return loss
     
