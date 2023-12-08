@@ -1,19 +1,19 @@
 import matplotlib.pyplot as plt
+
 import os
+import logging
 
 
 def prepare_data(df, target=None):
-    """
-    This function helps you to split your data into features and label >>>>
-    Parameter: df(Pandas DataFrame), target(The label)
-    Returns: 2 numpy array which are: X and y, where:
-    X >>> 2 dimension array, the feature
-    y >>> 1 dimension array, the label to be predicted
-    """
+    
+    '''
+    
+    '''
 
     if target is not None:
         X = df.drop(target, axis=1).values
         y = df[target].values
+        logging.info(f'Data {df} \t has been prepared')
     return X, y
 
 

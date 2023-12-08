@@ -3,6 +3,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import joblib
 import os
+import logging
 
 class Perceptron:
     #Constructor definition
@@ -10,7 +11,7 @@ class Perceptron:
         self.weights = np.random.randn(3) * 1e-4 #getting small random weights
         training = (eta is not None) and (epochs is not None)
         if training:
-            print(f'Initial weights is {self.weights}')
+            logging.info(f'Initial weights is {self.weights}')
         self.eta = eta
         self.epochs = epochs
     
@@ -28,25 +29,26 @@ class Perceptron:
         self.y = y
         #X with bias
         X_with_bias = np.c_[self.X, -np.ones((len(self.X), 1))]
+        logging.info(f'X_with_bias is {X_with_bias} \n while original X is {X}')
         
         for epoch in range(self.epochs):
-            print('---' * 20)
-            print(f'epoch: {epoch + 1} / {self.epochs}')
-            print('---' * 20)
+            logging.info('---' * 20)
+            logging.info(f'epoch: {epoch + 1} / {self.epochs}')
+            logging.info('---' * 20)
             
             z = self._z_outcome(X_with_bias, self.weights)
             y_hat = self.activation_function(z)
             
-            print(f'Predicted value after forward pass is: {y_hat}')
+            logging.info(f'Predicted value after forward pass is: {y_hat}')
             
             #calculating error
             self.error = self.y - y_hat
-            print(f'error at epoch {epoch + 1} is {self.error}')
+            logging.info(f'error at epoch {epoch + 1} is {self.error}')
             
             #Updating weights
             self.weights = self.weights + self.eta * np.dot(X_with_bias.T, self.error)
-            print(f'Updated weights after {epoch + 1}/{self.epochs} is {self.weights}')
-            print(f'##' * 20)
+            logging.info(f'Updated weights after {epoch + 1}/{self.epochs} is {self.weights}')
+            logging.info(f'##' * 20)
     
     #The predict method, to predict an unseen data
     def predict(self, test_input):
