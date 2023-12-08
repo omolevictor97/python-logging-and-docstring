@@ -6,9 +6,12 @@ import logging
 
 def prepare_data(df, target=None):
     
-    '''
-    
-    '''
+    """prepare_data takes
+    pd.DataFrame: a dataframe to split into X (dependent) and y (independent) features
+
+    Returns:
+        [tuple]: [X, y(label column)]
+    """    
 
     if target is not None:
         X = df.drop(target, axis=1).values
